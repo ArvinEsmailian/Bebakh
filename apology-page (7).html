@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d0b14">
+<title>یه حرف از دلم</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg1:#0d0b14;
+  --bg2:#191327;
+  --text:#fff8fc;
+  --muted:#c9bfd0;
+  --accent:#eaa4c8;
+  --accent2:#b995e8;
+  --glass:rgba(255,255,255,.075);
+  --line:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0}
+body{
+  overflow:hidden;
+  font-family:"Vazirmatn",Tahoma,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 20% 20%,rgba(185,149,232,.18),transparent 34%),
+    radial-gradient(circle at 80% 75%,rgba(234,164,200,.16),transparent 32%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+body::before,body::after{
+  content:"";
+  position:fixed;
+  width:32vmax;height:32vmax;
+  border-radius:50%;
+  filter:blur(70px);
+  opacity:.18;
+  pointer-events:none;
+  animation:float 11s ease-in-out infinite alternate;
+}
+body::before{background:#bd86df;top:-18vmax;right:-10vmax}
+body::after{background:#e58bb8;bottom:-20vmax;left:-12vmax;animation-delay:-4s}
+@keyframes float{
+  0%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(2vw,1.5vh) scale(1.045)}
+  100%{transform:translate(4vw,3vh) scale(1.08)}
+}
+
+body::marker{display:none}
+.page::before,.page::after{
+  content:"";
+  position:fixed;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:rgba(255,220,241,.72);
+  box-shadow:0 0 18px rgba(255,190,225,.65);
+  pointer-events:none;
+  opacity:.35;
+  animation:drift 9s ease-in-out infinite;
+}
+.page::before{top:22%;right:14%;animation-delay:-2s}
+.page::after{bottom:20%;left:12%;width:5px;height:5px;animation-duration:11s;animation-delay:-6s}
+@keyframes drift{
+  0%,100%{transform:translate3d(0,8px,0) scale(.8);opacity:.15}
+  50%{transform:translate3d(10px,-18px,0) scale(1.15);opacity:.55}
+}
+
+.page{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+}
+.card{
+  width:min(900px,100%);
+  min-height:min(650px,calc(100vh - 56px));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:clamp(115px,10vw,145px) clamp(30px,7vw,90px) clamp(55px,7vw,90px);
+  border:1px solid var(--line);
+  border-radius:32px;
+  background:rgba(10,8,16,.38);
+  box-shadow:0 30px 90px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.035);
+  backdrop-filter:blur(22px);
+  transform:translateZ(0);
+  animation:cardBreathe 7s ease-in-out infinite;
+  -webkit-backdrop-filter:blur(22px);
+}
+.content{width:min(720px,100%);position:relative}
+.heart{
+  width:62px;height:62px;
+  margin:0 auto 30px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:var(--glass);
+  border:1px solid var(--line);
+  font-size:25px;
+  box-shadow:0 0 40px rgba(234,164,200,.12);
+  animation:heartFloat 4s ease-in-out infinite;
+  transition:transform .55s cubic-bezier(.22,1,.36,1),background .45s ease,box-shadow .45s ease;
+}
+.heart.pop{animation:heartPop .72s cubic-bezier(.2,.85,.25,1)}
+@keyframes heartFloat{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-4px) scale(1.025)}
+}
+@keyframes heartPop{
+  0%{transform:scale(.82);opacity:.65}
+  45%{transform:scale(1.13);opacity:1}
+  100%{transform:scale(1)}
+}
+.text{
+  min-height:230px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.text h1{
+  margin:0;
+  font-size:clamp(30px,5vw,58px);
+  line-height:1.65;
+  font-weight:600;
+  letter-spacing:-.5px;
+  text-wrap:balance;
+}
+.text p{
+  margin:18px 0 0;
+  color:var(--muted);
+  font-size:clamp(16px,2vw,20px);
+  line-height:2.1;
+  max-width:650px;
+}
+.fade-in{animation:fadeIn .65s ease both}
+@keyframes cardBreathe{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(0,-2px,0) scale(1.002)}
+}
+@keyframes fadeIn{
+  0%{opacity:0;transform:translate3d(0,22px,0) scale(.985);filter:blur(5px)}
+  45%{opacity:.72;filter:blur(1.5px)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+}
+.fade-in h1{animation:softTitle .8s cubic-bezier(.22,.8,.25,1) both}
+.fade-in p{animation:softBody .9s .08s cubic-bezier(.22,.8,.25,1) both}
+@keyframes softTitle{
+  from{opacity:0;transform:translateY(10px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes softBody{
+  from{opacity:0;transform:translateY(9px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.actions{
+  margin-top:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+button{
+  border:0;
+  cursor:pointer;
+  font:inherit;
+  color:#241725;
+  background:linear-gradient(135deg,#f2bad8,#c8a6ed);
+  padding:14px 27px;
+  min-width:175px;
+  border-radius:999px;
+  font-weight:700;
+  box-shadow:0 12px 30px rgba(0,0,0,.22);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,filter .35s ease;
+  position:relative;
+  overflow:hidden;
+}
+button::after{
+  content:"";
+  position:absolute;
+  top:-80%;
+  left:-35%;
+  width:24%;
+  height:260%;
+  background:rgba(255,255,255,.32);
+  transform:rotate(22deg) translateX(-180%);
+  transition:transform .7s cubic-bezier(.2,.7,.2,1);
+  pointer-events:none;
+}
+button:hover::after{transform:rotate(22deg) translateX(560%)}
+button:hover{transform:translateY(-3px) scale(1.015);filter:brightness(1.06);box-shadow:0 18px 40px rgba(0,0,0,.3)}
+button:active{transform:translateY(-1px) scale(.985)}
+button:disabled{cursor:default;opacity:.72;filter:saturate(.78);transform:none;box-shadow:0 9px 24px rgba(0,0,0,.18)}
+button:disabled::after{display:none}
+.wait-hint{min-height:20px;margin-top:9px;font-size:12px;color:rgba(255,255,255,.62);opacity:0;transform:translateY(-3px);transition:opacity .4s ease,transform .4s ease;pointer-events:none}
+.wait-hint.show{opacity:1;transform:translateY(0)}
+button:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 16px 35px rgba(0,0,0,.3)}
+button:active{transform:translateY(0)}
+button.secondary{
+  color:var(--text);
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--line);
+  box-shadow:none;
+  min-width:auto;
+  padding-inline:20px;
+}
+.progress{
+  position:absolute;
+  left:50%;
+  bottom:28px;
+  transform:translateX(-50%);
+  display:flex;
+  gap:7px;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:width .55s cubic-bezier(.22,1,.36,1),background .4s ease,transform .4s ease,opacity .4s ease;opacity:.75}
+.dot.active{width:22px;border-radius:10px;background:var(--accent);transform:scaleY(1.08);opacity:1;box-shadow:0 0 14px rgba(234,164,200,.35)}
+.music{
+  position:absolute;
+  top:25px;
+  left:25px;
+  display:none;
+  align-items:center;
+  gap:8px;
+  color:var(--muted);
+  font-size:12px;
+  background:rgba(255,255,255,.055);
+  border:1px solid var(--line);
+  padding:8px 12px;
+  border-radius:999px;
+}
+.music.show{display:flex}
+.equalizer{display:flex;gap:2px;height:12px;align-items:end}
+.equalizer i{display:block;width:2px;background:var(--accent);animation:eq .8s ease-in-out infinite alternate}
+.equalizer i:nth-child(1){height:5px}.equalizer i:nth-child(2){height:11px;animation-delay:.15s}.equalizer i:nth-child(3){height:7px;animation-delay:.3s}
+@keyframes eq{to{height:3px}}
+.footer-note{
+  margin-top:28px;
+  color:rgba(255,255,255,.42);
+  font-size:11px;
+}
+.hidden{display:none!important}
+
+
+.final-chip{
+  display:inline-block;
+  margin-top:14px;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.7);
+  font-size:12px;
+}
+
+.music-player{
+  position:absolute;top:22px;left:22px;width:min(390px,calc(100% - 44px));
+  display:flex;align-items:center;gap:12px;padding:11px 13px;
+  border:1px solid rgba(255,255,255,.13);border-radius:20px;
+  background:rgba(16,12,24,.72);box-shadow:0 15px 45px rgba(0,0,0,.25);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:5
+}
+.music-play,.music-volume{
+  flex:0 0 auto;min-width:0;width:40px;height:40px;padding:0;border-radius:50%;
+  display:grid;place-items:center;border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.08);color:#fff;box-shadow:none;font-size:13px
+}
+.music-play:hover,.music-volume:hover{box-shadow:none;transform:scale(1.05)}
+.music-info{min-width:0;flex:1;text-align:right}
+.music-title{font-size:12px;font-weight:700;color:#fff}
+.music-artist{font-size:10px;color:#aaa0b1;margin-top:1px}
+.music-track{height:4px;width:100%;margin-top:8px;border-radius:99px;background:rgba(255,255,255,.12);cursor:pointer;overflow:hidden}
+.music-track span{display:block;width:0%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#eaa4c8,#b995e8)}
+.music-times{display:flex;justify-content:space-between;direction:ltr;margin-top:3px;color:#817989;font-size:8px}
+.music-volume{font-size:14px}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
+@media(max-width:600px){
+  .page{padding:12px}
+  .card{min-height:calc(100vh - 24px);border-radius:25px;padding:115px 22px 70px}
+  .heart{margin-bottom:20px;width:54px;height:54px}
+  .text{min-height:300px}
+  .text h1{line-height:1.75}
+  .text p{line-height:2}
+  .progress{bottom:23px}
+  .music-player{top:15px;left:15px;width:calc(100% - 30px);border-radius:18px}
+  .music-play,.music-volume{width:36px;height:36px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="card">
+    <div class="music-player" id="musicPlayer">
+      <button class="music-play" id="musicPlay" aria-label="پخش آهنگ">▶</button>
+      <div class="music-info">
+        <div class="music-title">Every Time</div>
+        <div class="music-artist">Oi Va Voi · Every Time</div>
+        <div class="music-track" id="musicTrack"><span id="musicFill"></span></div>
+        <div class="music-times"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+      </div>
+      <button class="music-volume" id="musicVolume" aria-label="بی‌صدا">🔊</button>
+    </div>
+
+    <div class="content">
+      <div class="heart" id="heart">♡</div>
+      <div class="text" id="text"></div>
+      <div class="actions" id="actions"></div>
+      <div class="footer-note" id="footer"></div>
+    </div>
+
+    <div class="progress" id="progress"></div>
+  </section>
+</main>
+
+<audio id="music" loop preload="metadata"></audio>
+
+<script>
+(() => {
+  "use strict";
+
+  const MUSIC_URL = "https://musvi.cin3ma.ir/Music/03-07/Every%20Time%20-%20Oi%20Va%20Voi.mp3";
+
+  const scenes = [
+    {title:"پری، قبل از هر چیزی بیا آهنگ پلی کن... 🤍",body:"یکم حالمون بهتر شه، بعد آروم آروم حرفامو می‌خونیم.",button:"بزن بریم",heart:"♡"},
+    {title:"می‌دونم شاید هنوز ازم دلخوری.",body:"و شاید چیزی که تازه درباره حسم فهمیدی، بیشتر از چیزی که فکر می‌کردم برات شوکه‌کننده بوده.",button:"ادامه بده",heart:""},
+    {title:"راستش نمی‌خواستم این‌طوری حالت رو بد کنم.",body:"اینکه من ازت خوشم میاد، چیزی بود که شاید گفتنش برای من سخت بود؛ ولی هیچ‌وقت نمی‌خواستم فهمیدنش برای تو تبدیل به یه اتفاق سنگین یا ناراحت‌کننده بشه.",button:"ادامه",heart:""},
+    {title:"پری، واقعاً پشیمونم.",body:"نه از اینکه چه حسی دارم؛ از اینکه این موضوع باعث شده تو ناراحت، شوکه یا معذب بشی. اگه باعث شدم ذهنت درگیر بشه یا ازم فاصله بگیری، واقعاً متأسفم.",button:"یه چیز مهم‌تر...",heart:""},
+    {title:"نمی‌خوام ازت هیچ جوابی بگیرم.",body:"نه الان، نه با این صفحه، نه با هیچ حرف دیگه‌ای. می‌فهمم که شاید برای هضم کردن این اتفاق به زمان نیاز داشته باشی.",button:"ادامه",heart:""},
+    {title:"حتی الان که هر دومون کنکور داریم...",body:"احتمالاً آخرین چیزی که لازم داریم، یه عالمه فکر و فشار اضافه‌ست. واقعاً نمی‌خواستم من یکی از دلایل به‌هم‌ریختن حالت باشم.",button:"ادامه",heart:""},
+    {title:"فقط یه چیزی رو می‌خواستم بدونی.",body:"اینکه من ازت خوشم میاد، قرار نیست چیزی رو بهت تحمیل کنه. قرار نیست رفتارت با من عوض بشه یا مجبور باشی چیزی رو مثل من احساس کنی.",button:"یه چیز خیلی مهم...",heart:"♡"},
+    {title:"چیزی که نمی‌خوام ازت...",body:"نمی‌خوام به خاطر حرفای من احساس کنی باید بهم جوابی بدی.<br><br>لازم نیست همین الان چیزی رو مشخص کنی. لازم نیست احساس منو جبران کنی. فقط می‌خواستم خودت بدونی.",button:"ادامه",heart:""},
+    {title:"من هنوز همون آدم قبلیم، پری.",body:"فقط یه چیزی درباره خودم رو فهمیدی که شاید گفتنش برای من سخت بود و فهمیدنش برای تو ناگهانی.",button:"یه قدم دیگه",heart:""},
+    {title:"اگه هنوز ناراحتی، کاملاً می‌فهمم.",body:"عجله‌ای نیست. حتی اگر برای آروم شدن به یه مقدار فاصله نیاز داشته باشی، من درکت می‌کنم.",button:"ادامه",heart:""},
+    {title:"یه چیز کوچیک دیگه هم هست...",body:"اگه بین حرفام، حتی یه لحظه، تونستم یه لبخند کوچیک بیارم روی صورتت، فکر کنم همین برای من کافیه. 🤍",button:"ادامه",heart:"♡"},
+    {title:"دلم برای حرف زدن باهات تنگ شده.",body:"ولی بیشتر از اینکه بخوام الان نزدیکت باشم، دلم می‌خواد حالت خوب باشه. حتی اگه برای خوب شدن حالت، یه کم فاصله لازم داشته باشی.",button:"آخرین حرف",heart:""},
+    {title:"و حالا آخرین حرف...",body:"پری، بابت اینکه ناراحتت کردم، بابت اینکه یه‌دفعه با چیزی روبه‌رو شدی که انتظارش رو نداشتی، و بابت هر فشاری که از این بابت بهت رسید...<br><br><strong>واقعاً متأسفم. 🤍</strong>",button:"بریم آخرش...",heart:""},
+    {title:"مراقب خودت باش. 🤍",body:"کنکورت رو بده، خوب بخون، به خودت برس... و هر وقت خواستی، هر وقت آماده بودی، می‌تونی باهام حرف بزنی. من عجله‌ای ندارم.",button:"آخرین صفحه",heart:"♡"},
+    {title:"خب... دیگه بیشتر از این مزاحمت نمی‌شم :)",body:"فقط امیدوارم این صفحه حداقل یکم از سنگینی این چند روز رو کمتر کرده باشه.",button:"یه چیز کوچیک مونده",heart:""},
+    {title:"ی چیپس خوشمزه :) ",body:"همین. چون نمی‌تونستم آخر پیامم رو بدون این تموم کنم. 😭🤍",button:"از اول ببین",heart:"♡"}
+  ];
+
+  const audio = document.getElementById("music");
+  const text = document.getElementById("text");
+  const actions = document.getElementById("actions");
+  const progress = document.getElementById("progress");
+  const heart = document.getElementById("heart");
+  const footer = document.getElementById("footer");
+  const musicPlay = document.getElementById("musicPlay");
+  const musicVolume = document.getElementById("musicVolume");
+  const musicTrack = document.getElementById("musicTrack");
+  const musicFill = document.getElementById("musicFill");
+  const currentTimeEl = document.getElementById("currentTime");
+  const durationEl = document.getElementById("duration");
+
+  let index = 0;
+
+  // The first screen starts the music immediately; after that, progression
+  // requires real listening time. Pausing the audio pauses the waiting period.
+  const MIN_LISTEN_SECONDS = 10;
+  const MIN_LISTEN_SECONDS_LATER = 7;
+  const EARLY_SCENES = 5;
+  let sceneListenSeconds = 0;
+  let lastAudioTime = null;
+  let pacingInterval = null;
+
+  audio.src = MUSIC_URL;
+  audio.preload = "metadata";
+  audio.loop = true;
+
+  function formatTime(seconds) {
+    if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+    return `${minutes}:${secs}`;
+  }
+
+  function updatePlayer() {
+    const duration = audio.duration;
+    const percent = Number.isFinite(duration) && duration > 0
+      ? Math.min(100, Math.max(0, (audio.currentTime / duration) * 100))
+      : 0;
+
+    musicFill.style.width = `${percent}%`;
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+    durationEl.textContent = formatTime(duration);
+    musicPlay.textContent = audio.paused ? "▶" : "Ⅱ";
+    musicPlay.setAttribute("aria-label", audio.paused ? "پخش آهنگ" : "توقف آهنگ");
+  }
+
+  function renderProgress() {
+    progress.innerHTML = scenes.map((_, i) =>
+      `<span class="dot ${i === index ? "active" : ""}"></span>`
+    ).join("");
+  }
+
+  function clearPacing() {
+    if (pacingInterval) {
+      clearInterval(pacingInterval);
+      pacingInterval = null;
+    }
+  }
+
+  function requiredListenSeconds() {
+    if (index === 0 || index >= scenes.length - 1) return 0;
+    return index < EARLY_SCENES ? MIN_LISTEN_SECONDS : MIN_LISTEN_SECONDS_LATER;
+  }
+
+  function updatePacing() {
+    const button = document.getElementById("next");
+    const hint = document.getElementById("waitHint");
+    if (!button || !hint) return;
+    const required = requiredListenSeconds();
+    if (required === 0) {
+      button.disabled = false;
+      hint.classList.remove("show");
+      hint.textContent = "";
+      return;
+    }
+    const remaining = Math.max(0, required - sceneListenSeconds);
+    if (remaining <= 0) {
+      button.disabled = false;
+      button.textContent = scenes[index].button;
+      hint.classList.remove("show");
+      hint.textContent = "";
+      clearPacing();
+      return;
+    }
+    button.disabled = true;
+    button.textContent = "یکم با آهنگ بمون... 🎧";
+    hint.textContent = `فقط ${Math.ceil(remaining)} ثانیه دیگه 🤍`;
+    hint.classList.add("show");
+  }
+
+  function startPacing() {
+    clearPacing();
+    sceneListenSeconds = 0;
+    lastAudioTime = Number.isFinite(audio.currentTime) ? audio.currentTime : null;
+    updatePacing();
+    if (requiredListenSeconds() > 0) pacingInterval = setInterval(updatePacing, 250);
+  }
+
+  function render() {
+    clearPacing();
+    const scene = scenes[index];
+    text.classList.remove("fade-in");
+    void text.offsetWidth;
+    text.classList.add("fade-in");
+    heart.classList.remove("pop");
+    void heart.offsetWidth;
+    heart.classList.add("pop");
+    heart.textContent = scene.heart || "♡";
+    text.innerHTML = `<h1>${scene.title}</h1>` + (scene.body ? `<p>${scene.body}</p>` : "");
+    actions.innerHTML = `<button id="next" type="button">${scene.button}</button><div id="waitHint" class="wait-hint" aria-live="polite"></div>`;
+    footer.textContent = index === 0 ? "فقط چند دقیقه..." : "";
+    document.getElementById("next").addEventListener("click", handleNext);
+    renderProgress();
+    startPacing();
+  }
+
+  async function playMusic() {
+    try {
+      await audio.play();
+    } catch (error) {
+      console.warn("Unable to play the supplied audio URL.", error);
+    }
+    updatePlayer();
+  }
+
+  async function handleNext() {
+    const button = document.getElementById("next");
+    if (button && button.disabled) {
+      updatePacing();
+      return;
+    }
+    if (index === 0 && audio.paused) await playMusic();
+    index = index < scenes.length - 1 ? index + 1 : 0;
+    render();
+  }
+
+  musicPlay.addEventListener("click", async (event) => {
+    event.stopPropagation();
+    if (audio.paused) {
+      await playMusic();
+    } else {
+      audio.pause();
+      updatePlayer();
+    }
+  });
+
+  musicVolume.addEventListener("click", (event) => {
+    event.stopPropagation();
+    audio.muted = !audio.muted;
+    musicVolume.textContent = audio.muted ? "🔇" : "🔊";
+    musicVolume.setAttribute("aria-label", audio.muted ? "فعال کردن صدا" : "بی‌صدا");
+  });
+
+  musicTrack.addEventListener("click", (event) => {
+    if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
+
+    const rect = musicTrack.getBoundingClientRect();
+    const ratio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+    audio.currentTime = ratio * audio.duration;
+    updatePlayer();
+  });
+
+  audio.addEventListener("loadedmetadata", updatePlayer);
+  audio.addEventListener("durationchange", updatePlayer);
+  audio.addEventListener("timeupdate", () => {
+    updatePlayer();
+    if (audio.paused || requiredListenSeconds() === 0) {
+      lastAudioTime = Number.isFinite(audio.currentTime) ? audio.currentTime : lastAudioTime;
+      return;
+    }
+    const now = audio.currentTime;
+    if (Number.isFinite(now) && Number.isFinite(lastAudioTime)) {
+      const delta = now - lastAudioTime;
+      if (delta > 0 && delta < 2) sceneListenSeconds += delta;
+    }
+    lastAudioTime = now;
+    updatePacing();
+  });
+  audio.addEventListener("play", updatePlayer);
+  audio.addEventListener("pause", updatePlayer);
+  audio.addEventListener("volumechange", updatePlayer);
+  audio.addEventListener("error", () => {
+    console.warn("Audio source could not be loaded:", MUSIC_URL);
+    updatePlayer();
+  });
+
+  render();
+  updatePlayer();
+})();
+</script>
+</body>
+</html>
